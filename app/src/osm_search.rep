@@ -1,0 +1,22 @@
+// RemoteObjects source definition for the osm_search ("OSM Search") app.
+//
+// A thin replica, exactly like osm_renderer's: it forwards operations to two
+// core modules over RemoteObjects. Geocode / reverse_geocode /
+// search_index_status / search_snapshot go to the `osm_search_core` Rust core
+// (via its generic invoke_op); open / regions / catalog / fetch / import /
+// job_status and everything else go to the `osm` core (via its invokeOpJson).
+// `search_build` is special-cased to resolve the imported PBF path from the
+// osm catalog and then forward to the search core; `open` seeds both sides.
+// QML calls invokeOp(name, argsJson) and parses the returned JSON.
+class OsmSearch
+{
+    // Last operation result JSON.
+    PROP(QString lastResult READWRITE)
+
+    // Last error message (empty on success).
+    PROP(QString lastErr READWRITE)
+
+    // Invoke an operation by name with JSON arguments; returns the JSON result.
+    // Search ops are forwarded to the osm_search_core; everything else to osm.
+    SLOT(QString invokeOp(QString name, QString argsJson))
+}

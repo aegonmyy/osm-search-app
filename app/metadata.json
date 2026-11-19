@@ -1,0 +1,28 @@
+{
+  "name": "osm_search",
+  "display_name": "OSM Search",
+  "version": "0.2.0",
+  "type": "ui_qml",
+  "category": "application",
+  "description": "Search places by name and coordinates across the OSM regions distributed on Logos. A standalone consumer of the osm SDK: it fetches verified region data from Logos Storage by its on-chain CID, builds a local search index (via the osm_search_core Rust core), and answers queries offline. Fetching is always an explicit user decision.",
+  "main": "osm_search_plugin",
+  "view": "qml/Main.qml",
+  "icon": "src/icons/icon.png",
+  "dependencies": [
+    "osm",
+    "osm_search_core"
+  ],
+  "nix": {
+    "packages": {
+      "build": [],
+      "runtime": []
+    },
+    "external_libraries": [],
+    "cmake": {
+      "find_packages": [],
+      "extra_sources": [],
+      "extra_include_dirs": [],
+      "extra_link_libraries": []
+    }
+  }
+}

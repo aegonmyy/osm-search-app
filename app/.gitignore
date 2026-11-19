@@ -1,0 +1,6 @@
+target/
+result
+.direnv/
+_artifacts/
+build/
+build-local/
